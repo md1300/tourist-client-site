@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const LogIn = () => {
@@ -33,8 +34,12 @@ const LogIn = () => {
           <button className="btn btn-primary">Login</button>
         </div>
       </form>
-       
-     
+      <div className="flex gap-3 p-5">
+       <p className=" border-2">Sign up with Google </p>
+       <p className=" border-2">Sign up with GitHub</p>
+       </div> 
+       <div>
+        <p className="p-5">if you do not have an account <span className="btn btn-link"><Link to='/registration'> register </Link></span> here </p></div>   
     </div>
   </div>
 </div>
