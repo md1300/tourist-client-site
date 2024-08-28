@@ -1,11 +1,16 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../ContextApi/AuthProvider";
+import Swal from "sweetalert2";
+import { IoEyeSharp } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa6";
 
 
 const Registration = () => {
 
-  const {handleRegistration}=useContext(AuthContext)
+  const {handleRegistration,UpdateUserprofile}=useContext(AuthContext)
+  const [showPassword,setShowPassword]=useState('')
+  const navigate=useNavigate()
 
 
   const handleRegisterButton=e=>{
@@ -16,10 +21,46 @@ const Registration = () => {
     const email=form.email.value;
     const password=form.password.value;
     const register={name,photoUrl,email,password};
+    console.log(register)   
+    
+    if(password.length<6){
+        alert ('please, insert minimum six character')
+        return
+    }
+    else if(!/[A-Z]/.test(password)){
+      alert('please , insert minimum one Capital letter')
+      
+      return 
+    }
+    else if(!/[a-z]/.test(password)){
+      alert ('please , insert minimum one small letter')
+      return
+    }
+    
     handleRegistration(email,password)
+    .then(result=>{
+        UpdateUserprofile(name,photoUrl)
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "you are successfully registered",
+          showConfirmButton: false,
+          timer: 1500
+      });
 
-    console.log(register)
-   
+      console.log(result.user)
+      navigate('/')
+  })
+  .catch(error=>{
+    Swal.fire({
+      title: 'Error!',
+      text: `Do you want to continue ${error.message}`,
+      icon: 'error',
+      confirmButtonText: 'Okey'
+    })
+  })
+
+    
   }
     return (
         <div>
@@ -55,7 +96,7 @@ const Registration = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered" name="password" required />
+          <input type={showPassword?"text":"password"} placeholder="password" className="input input-bordered" name="password" required />
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
           </label>
@@ -64,9 +105,14 @@ const Registration = () => {
           <button className="btn btn-primary">register</button>
         </div>
       </form>
-       
+       {/* -------------------- */}
+       <div className="absolute bottom-60 right-3">
+          <button className="text-xl" onClick={()=>setShowPassword(!showPassword)}>{showPassword?<FaEyeSlash />:<IoEyeSharp />}</button>
+        </div>
+       {/* ---------------------- */}
       <p className="p-5">if you have already an account <span className="btn btn-link"> <Link to='/logIn'>log in </Link></span></p>
     </div>
+    
   </div>
 </div>
             {/* ------------------------------------ */}

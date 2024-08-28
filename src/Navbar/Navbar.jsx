@@ -1,13 +1,41 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../ContextApi/AuthProvider";
+import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
-    const home=<Link to='/'> <button> home </button></Link>
-    const spots=<Link to='/spots'> <button> All Tourists Spot </button></Link>
-    const addSpot=<Link to='/addSpot'><button> Add Tourists Spot </button></Link>
-    const myList=<Link to='/myList'><button> My List </button></Link>
+  const {user,handleLogOut}=useContext(AuthContext)
+  
+const navbarLink=<>
+<NavLink to='/' className="btn btn-ghost">Home</NavLink>
+<NavLink to='/spots' className="btn btn-ghost">AllTourists Spot</NavLink>
+<NavLink to='/addSpot' className="btn btn-ghost">AddTourists Spot</NavLink>
+<NavLink to='/myList' className="btn btn-ghost">MyList</NavLink>
+<NavLink to='/logIn' className="btn btn-ghost">Login</NavLink>
+<NavLink to='/registration' className="btn btn-ghost">Register</NavLink>
+</>
+    
+    const handleLogOutButton=()=>{
+      handleLogOut()
+      .then(result=>{
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "successfully Log Out",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(error=>{
+            console.log(error.message)
+      })
+    }
+
+
     return (
-        <>
+        <div className="mb-14">
            <div className="navbar bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
@@ -28,27 +56,49 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>{home}</li>
-        <li>{spots}</li>
-        <li>{addSpot}</li>
-        <li>{myList}</li>
+      { 
+        navbarLink
+      }
+       
       </ul>
     </div>
     <a className="btn btn-ghost text-xl">daisyUI</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-       <li>{home}</li>
-       <li>{spots}</li>
-       <li>{addSpot}</li>
-       <li>{myList}</li>
+       {
+        navbarLink
+       }
     </ul>
   </div>
   <div className="navbar-end">
-    <Link to='/logIn' className="btn">Log in</Link>
+    <div className="flex gap-5 items-center">
+      <div>
+        {
+        user?<div className="tooltip tooltip-bottom" data-tip={user.email} >
+           <div className="avatar">
+              <div className="w-24 rounded-full" >
+           <img src={user.photoURL}/>
+              </div>
+           </div>
+       </div>:<div>
+         </div>
+        }
+      </div>
+            
+       <div>
+         {
+           user?<div>
+           <div><button onClick={handleLogOutButton} className="btn">Log Out</button></div>
+           </div>:<div><Link to='/logIn' className="btn">Log In</Link></div>
+         }
+      </div>
+    </div>
   </div>
 </div> 
-        </>
+
+
+        </div>
     );
 };
 
