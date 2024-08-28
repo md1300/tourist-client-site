@@ -7,6 +7,7 @@ import AddTouristSpots from "./component/AddTouristSpots";
 import TouristSports from "./component/TouristSports";
 import MyList from "./component/MyList";
 import NotFound from "./NotFound/NotFound";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 
@@ -35,7 +36,8 @@ const router = createBrowserRouter([
             },
             {
                 path:'/spots',
-                element:<TouristSports/>
+                element:<PrivateRoute><TouristSports/></PrivateRoute>
+                
             },
             {
                 path:'/myList',

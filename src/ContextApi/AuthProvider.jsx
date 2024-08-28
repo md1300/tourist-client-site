@@ -47,7 +47,7 @@ const handleLogOut=()=>{
 }
 // ----------------update user profile------------------
 const UpdateUserprofile=(name,photoUrl)=>{
-  setLoading(false)
+  setLoading(true)
  updateProfile(auth.currentUser ,{
   displayName : name,
   photoURL :  photoUrl
@@ -59,6 +59,7 @@ const UpdateUserprofile=(name,photoUrl)=>{
  useEffect(()=>{
   const unSubscribe=onAuthStateChanged(auth,currentUser=>{
         setUser(currentUser)
+        setLoading(false)
         // console.log('this is currentUser name',currentUser)
   })
   return ()=>{
