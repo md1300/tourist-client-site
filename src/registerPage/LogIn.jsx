@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../ContextApi/AuthProvider";
 import Swal from "sweetalert2";
 import { IoEyeSharp } from "react-icons/io5";
@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 const LogIn = () => {
   const {handleLogIn,handleGoogleLogIn, }=useContext(AuthContext)
   const [showPassword,setShowPassword]=useState('')
+  const navigate =useNavigate()
 // ---------------- normal log in ------------------------ 
   const handleLogInButton=e=>{
     e.preventDefault()
@@ -27,6 +28,7 @@ const LogIn = () => {
         timer: 1500
       });
       console.log(result.user)
+      navigate('/')
   })
   .catch(error=>{
 
@@ -47,26 +49,8 @@ const LogIn = () => {
   // ---------------google log in ----------------
   const handleGoogleLogInButton=()=>{
       handleGoogleLogIn()
-      .then(result=>{
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "you are successfully google log in",
-          showConfirmButton: false,
-          timer: 1500
-        });
-  
-        console.log(result.user)
-    })
-    .catch(error=>{
-      Swal.fire({
-        title: 'Error!',
-        text: `Do you want to continue ${error.message}`,
-        icon: 'error',
-        confirmButtonText: 'Okey'
-      })
-    })
+       
+      navigate('/')
     // ------------------------------
   }
     return (

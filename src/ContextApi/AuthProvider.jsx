@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
 
 
+
 export const AuthContext=createContext(null)
 const provider = new GoogleAuthProvider()
 
@@ -10,6 +11,7 @@ const provider = new GoogleAuthProvider()
 const AuthProvider = ({children}) => {
   const [user,setUser]=useState(null)
   const [loading,setLoading]=useState(true)
+  
 // -------------------- Log in -----------------
 
   const handleLogIn=(email,password)=>{
@@ -24,6 +26,7 @@ const AuthProvider = ({children}) => {
     signInWithPopup(auth,provider)
       .then(result=>{
         console.log(result.user)
+        
       })
       .catch(error=>{
         console.log(error.message)
