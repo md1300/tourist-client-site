@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../ContextApi/AuthProvider";
 import Swal from "sweetalert2";
 import { IoEyeSharp } from "react-icons/io5";
@@ -9,6 +9,9 @@ const LogIn = () => {
   const {handleLogIn,handleGoogleLogIn, }=useContext(AuthContext)
   const [showPassword,setShowPassword]=useState('')
   const navigate =useNavigate()
+  const location=useLocation()
+  const form=location?.state || '/'
+
 // ---------------- normal log in ------------------------ 
   const handleLogInButton=e=>{
     e.preventDefault()
@@ -28,7 +31,7 @@ const LogIn = () => {
         timer: 1500
       });
       console.log(result.user)
-      navigate('/')
+      navigate(form)
   })
   .catch(error=>{
 
