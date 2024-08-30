@@ -9,5 +9,9 @@ export default {
   },
   // eslint-disable-next-line 
   plugins: [require('daisyui'),],
+  daisyui: {
+    themes: ["light", "synthwave", ],
+  },
+
 }
 

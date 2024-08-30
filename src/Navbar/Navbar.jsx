@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState,  } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../ContextApi/AuthProvider";
 import Swal from "sweetalert2";
@@ -6,7 +6,8 @@ import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
-  const {user,handleLogOut}=useContext(AuthContext)
+  const {user,handleLogOut}=useContext(AuthContext);
+  const [theme,setTheme]=useState("synthwave")
   
 const navbarLink=<>
 <NavLink to='/' className="btn btn-ghost">Home</NavLink>
@@ -32,11 +33,27 @@ const navbarLink=<>
             console.log(error.message)
       })
     }
+  
+    useEffect(()=>{
+      localStorage.setItem('theme',theme);
+      const localTheme=localStorage.getItem('theme')
+      document.querySelector('html').setAttribute('data-theme',localTheme)
+    },[theme])
+   
+    const handleToggleButton=(e)=>{
+      if(e.target.checked){
+        setTheme("synthwave")
+      }
+      else{
+        setTheme("light")
+      }
+          
+    }
 
 
     return (
-        <div className="mb-14">
-           <div className="navbar bg-base-100">
+        <div >
+           <div className="navbar bg-base-100 fixed z-10">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -73,11 +90,18 @@ const navbarLink=<>
   </div>
   <div className="navbar-end">
     <div className="flex gap-5 items-center">
+      
+
+      <div>
+          <input  onChange={handleToggleButton}  type="checkbox"   className="toggle theme-controller"  defaultChecked />
+      </div>
+     
+  
       <div>
         {
         user?<div className="tooltip tooltip-bottom" data-tip={user.email} >
            <div className="avatar">
-              <div className="w-24 rounded-full" >
+              <div className="w-14 rounded-full" >
            <img src={user.photoURL}/>
               </div>
            </div>
