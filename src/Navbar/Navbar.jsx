@@ -10,12 +10,12 @@ const Navbar = () => {
   const [theme,setTheme]=useState("synthwave")
   
 const navbarLink=<>
-<NavLink to='/' className="btn btn-ghost">Home</NavLink>
-<NavLink to='/spots' className="btn btn-ghost">AllTourists Spot</NavLink>
-<NavLink to='/addSpot' className="btn btn-ghost">AddTourists Spot</NavLink>
-<NavLink to='/myList' className="btn btn-ghost">MyList</NavLink>
-<NavLink to='/logIn' className="btn btn-ghost">Login</NavLink>
-<NavLink to='/registration' className="btn btn-ghost">Register</NavLink>
+<NavLink to='/' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>Home</NavLink>
+<NavLink to='/spots' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>AllTourists Spot</NavLink>
+<NavLink to='/addSpot' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>AddTourists Spot</NavLink>
+<NavLink to='/myList' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>MyList</NavLink>
+<NavLink to='/logIn' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>Login</NavLink>
+<NavLink to='/registration' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>Register</NavLink>
 </>
     
     const handleLogOutButton=()=>{

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../ContextApi/AuthProvider";
 import Swal from "sweetalert2";
 import { IoEyeSharp } from "react-icons/io5";
@@ -10,8 +10,11 @@ const Registration = () => {
 
   const {handleRegistration,UpdateUserprofile}=useContext(AuthContext)
   const [showPassword,setShowPassword]=useState('')
-  const navigate=useNavigate()
 
+  const navigate=useNavigate()
+  
+
+  console.log(location)
 
   const handleRegisterButton=e=>{
     e.preventDefault()

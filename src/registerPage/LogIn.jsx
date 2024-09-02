@@ -12,7 +12,12 @@ const LogIn = () => {
   const location=useLocation()
   const form=location?.state || '/'
 
+  console.log(location) ;
+
 // ---------------- normal log in ------------------------ 
+
+
+
   const handleLogInButton=e=>{
     e.preventDefault()
     const email=e.target.email.value;
