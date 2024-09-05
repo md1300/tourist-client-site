@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/spots',
-                element:<PrivateRoute><TouristSports/></PrivateRoute>,
+                element:<TouristSports/>,
                 loader:()=>fetch('http://localhost:4000/countries')  
             },
             {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/details/:id',
-                element:<Details/>,
+                element:<PrivateRoute><Details/></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
             }
         ]
