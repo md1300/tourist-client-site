@@ -8,6 +8,7 @@ import TouristSports from "./component/TouristSports";
 import MyList from "./component/MyList";
 import NotFound from "./NotFound/NotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Details from "./component/Details/Details";
 
 
 
@@ -32,17 +33,21 @@ const router = createBrowserRouter([
             },
             {
                 path:'/addSpot' ,
-                element:<PrivateRoute><AddTouristSpots/></PrivateRoute>
-                
+                element:<PrivateRoute><AddTouristSpots/></PrivateRoute>             
             },
             {
                 path:'/spots',
-                element:<PrivateRoute><TouristSports/></PrivateRoute>
-                
+                element:<PrivateRoute><TouristSports/></PrivateRoute>,
+                loader:()=>fetch('http://localhost:4000/countries')  
             },
             {
                 path:'/myList',
                 element:<PrivateRoute><MyList/></PrivateRoute>
+            },
+            {
+                path:'/details/:id',
+                element:<Details/>,
+                loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
             }
         ]
     }

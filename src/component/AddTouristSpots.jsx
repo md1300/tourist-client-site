@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const AddTouristSpots = () => {
@@ -17,16 +18,36 @@ const AddTouristSpots = () => {
          const travelTime=form.travelTime.value;
          const totalVisitorPerYear=form.totalVisitorPerYear.value;
          const subMission={imageUrl,userName,spotsName,email,countryName,location,description,averageCost,seasonality,travelTime,totalVisitorPerYear};
-         console.log(subMission)
+         
+		//  -------------------------------
+		Swal.fire({
+			title: "Do you want to save the changes?",
+			showDenyButton: true,
+			showCancelButton: true,
+			confirmButtonText: "Save",
+			denyButtonText: `Don't save`
 
-         fetch('http://localhost:4000/countries',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(subMission)
-         })
+		  }).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				// --------------------
+				fetch('http://localhost:4000/countries',{
+					method:'POST',
+					headers:{
+						'content-type':'application/json'
+					},
+					body:JSON.stringify(subMission)
+				 })
+				// -------------------
+			  Swal.fire("Saved!", "", "success");
+			} else if (result.isDenied) {
+			  Swal.fire("Changes are not saved", "", "info");
+			}
+		  });
+		  form.reset()
+		// ---------------------------------
 
+        
 
     }
     return (
