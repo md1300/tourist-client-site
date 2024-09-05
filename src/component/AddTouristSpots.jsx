@@ -7,7 +7,7 @@ const AddTouristSpots = () => {
          e.preventDefault()
          const form=e.target;
          const imageUrl=form.image.value;
-         const userName=form.name.value;
+         const userName=form.userName.value;
          const spotsName=form.spotsName.value;
          const email=form.email.value;
          const countryName=form.countryName.value;

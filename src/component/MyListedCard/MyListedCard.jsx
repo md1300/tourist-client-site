@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
@@ -7,8 +8,8 @@ const MyListedCard = ({myDataList,setMyDataList,myDataLists}) => {
 
     const {_id,spotsName,email,countryName}=myDataList;
 
-    const handleDeleteButton=id=>{
-    //   console.log(id);
+    const handleDeleteButton=_id=>{
+    //   console.log(_id);
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -30,7 +31,7 @@ const MyListedCard = ({myDataList,setMyDataList,myDataLists}) => {
             text: "Your file has been deleted.",
             icon: "success"           
           });
-         const remainingListedCard=myDataLists.filter(card=>console.log(card._id!==id))
+         const remainingListedCard=myDataLists.filter(card=>console.log(card._id!==_id))
          setMyDataList(remainingListedCard)
         }
     })
@@ -48,7 +49,7 @@ const MyListedCard = ({myDataList,setMyDataList,myDataLists}) => {
                     <h1>place name {countryName} </h1>
                     <h1>place name {email} </h1>
                    <div className="mt-6 flex justify-between">
-                      <button className="btn btn-ghost">update</button>
+                    <Link to={`/updates/${_id}`}><button className="btn btn-ghost">update</button></Link> 
                       <button onClick={()=>handleDeleteButton(_id)}  className="btn btn-ghost">delete</button>
                    </div>
                 </div>

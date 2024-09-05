@@ -9,6 +9,7 @@ import MyList from "./component/MyList";
 import NotFound from "./NotFound/NotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Details from "./component/Details/Details";
+import UpdatePage from "./component/UpdatePage/UpdatePage";
 
 
 
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
             {
                 path:'/details/:id',
                 element:<PrivateRoute><Details/></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
+            },
+            {
+                path:'/updates/:id',
+                element:<UpdatePage></UpdatePage>,
                 loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
             }
         ]
