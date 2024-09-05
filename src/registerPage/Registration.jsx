@@ -14,7 +14,7 @@ const Registration = () => {
   const navigate=useNavigate()
   
 
-  console.log(location)
+  // console.log(location)
 
   const handleRegisterButton=e=>{
     e.preventDefault()
@@ -51,7 +51,7 @@ const Registration = () => {
           timer: 1500
       });
 
-      console.log(result.user)
+      // console.log(result.user)
       navigate('/')
   })
   .catch(error=>{
