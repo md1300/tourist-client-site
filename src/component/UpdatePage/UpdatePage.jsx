@@ -1,12 +1,70 @@
+import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const UpdatePage = () => {
     const loadingPlace=useLoaderData()
-    const {imageUrl,userName, spotsName,email,countryName,averageCost,description,location,seasonality,totalVisitorPerYear,travelTime,}=loadingPlace;
+    const {_id,imageUrl,userName, spotsName,email,countryName,averageCost,description,location,seasonality,totalVisitorPerYear,travelTime,}=loadingPlace;
+
+    const handleUpdateButton=e=>{
+        e.preventDefault()
+        const form=e.target;
+        const imageUrl=form.image.value;
+        const userName=form.userName.value;
+        const spotsName=form.spotsName.value;
+         const email=form.email.value;
+         const countryName=form.countryName.value;
+         const location=form.location.value;
+         const description=form.description.value;
+         const averageCost=form.averageCost.value;
+         const seasonality=form.seasonality.value;
+         const travelTime=form.travelTime.value;
+         const totalVisitorPerYear=form.totalVisitorPerYear.value;
+         const updateSubmission={imageUrl,userName,spotsName,email,countryName,location,description,averageCost,seasonality,travelTime,totalVisitorPerYear}
+        //  ----------------
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Update it"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:4000/countries/${_id}`,{
+                    method:'PUT',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify(updateSubmission)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data);
+                    if(data.acknowledged){
+                    Swal.fire({
+                        title: "Updated",
+                        text: "Your file has been Updated.",
+                        icon: "success"
+                      });
+                    }
+                })
+             
+            }
+          });
+        // ------------------
+        
+         
+
+            form.reset()
+        
+    }
+
     return (
         <div>
-           <form  className="container flex flex-col mx-auto space-y-12">
+           <form onSubmit={handleUpdateButton}  className="container flex flex-col mx-auto space-y-12">
 		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50">			
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 				<div className="col-span-full sm:col-span-3">
