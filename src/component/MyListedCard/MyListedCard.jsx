@@ -46,8 +46,8 @@ const MyListedCard = ({myDataList,setMyDataList,myDataLists}) => {
                     
                     <h1>{_id}</h1>
                     <h1>place name {spotsName} </h1>
-                    <h1>place name {countryName} </h1>
-                    <h1>place name {email} </h1>
+                    <h1>country name {countryName} </h1>
+                    <h1>email name {email} </h1>
                    <div className="mt-6 flex justify-between">
                     <Link to={`/updates/${_id}`}><button className="btn btn-ghost">update</button></Link> 
                       <button onClick={()=>handleDeleteButton(_id)}  className="btn btn-ghost">delete</button>

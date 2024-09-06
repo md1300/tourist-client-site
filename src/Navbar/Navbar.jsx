@@ -16,6 +16,18 @@ const navbarLink=<>
 <NavLink to='/myList' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>MyList</NavLink>
 <NavLink to='/logIn' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>Login</NavLink>
 <NavLink to='/registration' className={({isActive})=>isActive? "btn btn-ghost text-orange-500":"btn btn-ghost"}>Register</NavLink>
+{/* ---------------------------- */}
+<li className="btn btn-ghost" >
+  <details >
+    <summary >AreaZone</summary>
+       <ul className="p-2 flex-col gap-3">
+     <li><NavLink to='/asia'>southest asia Zone</NavLink></li>
+     <li><NavLink to='/euro'>Europe- zones </NavLink></li>
+   </ul>
+  </details>
+   
+</li>
+{/* -------------------------------------- */}
 </>
     
     const handleLogOutButton=()=>{

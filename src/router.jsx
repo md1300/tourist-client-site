@@ -10,6 +10,8 @@ import NotFound from "./NotFound/NotFound";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Details from "./component/Details/Details";
 import UpdatePage from "./component/UpdatePage/UpdatePage";
+import CountryCard from "./component/CountryCard/CountryCard";
+import EuroZone from "./component/EuroZone/EuroZone";
 
 
 
@@ -54,7 +56,17 @@ const router = createBrowserRouter([
                 path:'/updates/:id',
                 element:<UpdatePage></UpdatePage>,
                 loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
+            },
+            {
+                path:'/asia',
+                element:<CountryCard></CountryCard>
+            },
+            {
+                path:'/euro',
+                element:<EuroZone></EuroZone>
             }
+
+
         ]
     }
 ])
