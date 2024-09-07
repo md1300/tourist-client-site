@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../ContextApi/AuthProvider";
 import MyListedCard from "./MyListedCard/MyListedCard";
 
-
-
 const MyList = () => {
    
     const {user}=useContext(AuthContext) || {}
@@ -18,10 +16,7 @@ const MyList = () => {
         })
     },[user])
 
-    
-
-   
-
+ 
     return (
         <div>
             <h1>the length of my data lists {myDataLists.length}</h1>
