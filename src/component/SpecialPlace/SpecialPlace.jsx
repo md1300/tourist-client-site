@@ -9,7 +9,7 @@ const SpecialPlace = () => {
    
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/country/${countryName}`)
+        fetch(`https://tourist-server-site.vercel.app/country/${countryName}`)
         .then(res=>res.json())
         .then(data=>{
         setPlaceData(data)})

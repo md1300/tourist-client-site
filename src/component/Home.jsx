@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import Footer from "../Footer/Footer";
 import CountryCard from "./CountryCard/CountryCard";
 import EuroZone from "./EuroZone/EuroZone";
 
@@ -12,8 +13,8 @@ const Home = () => {
             <Banner/>
             <CountryCard/>
             <EuroZone/>
-            <h1 className="text-center text-3xl">this is home page </h1>
-        </div>
+            <Footer/>
+            </div>
     );
 };
 

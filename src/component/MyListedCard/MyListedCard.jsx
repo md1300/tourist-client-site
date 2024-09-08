@@ -20,7 +20,7 @@ const MyListedCard = ({myDataList,setMyDataList,myDataLists}) => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-             fetch(`http://localhost:4000/countries/${_id}`,{
+             fetch(`https://tourist-server-site.vercel.app/countries/${_id}`,{
         method:'DELETE'
       }) 
       .then(res=>res.json())

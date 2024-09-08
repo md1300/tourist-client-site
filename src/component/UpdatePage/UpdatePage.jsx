@@ -33,7 +33,7 @@ const UpdatePage = () => {
             confirmButtonText: "Yes, Update it"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:4000/countries/${_id}`,{
+                fetch(`https://tourist-server-site.vercel.app/countries/${_id}`,{
                     method:'PUT',
                     headers:{
                         'content-type':'application/json'

@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path:'/spots',
                 element:<TouristSports/>,
-                loader:()=>fetch('http://localhost:4000/countries')  
+                loader:()=>fetch('https://tourist-server-site.vercel.app/countries')  
             },
             {
                 path:'/myList',
@@ -51,12 +51,12 @@ const router = createBrowserRouter([
             {
                 path:'/details/:id',
                 element:<PrivateRoute><Details/></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
+                loader:({params})=>fetch(`https://tourist-server-site.vercel.app/countries/${params.id}`)
             },
             {
                 path:'/updates/:id',
                 element:<UpdatePage/>,
-                loader:({params})=>fetch(`http://localhost:4000/countries/${params.id}`)
+                loader:({params})=>fetch(`https://tourist-server-site.vercel.app/countries/${params.id}`)
             },
             {
                 path:'/asia',

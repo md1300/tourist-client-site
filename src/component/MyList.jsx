@@ -8,7 +8,7 @@ const MyList = () => {
     const [myDataLists,setMyDataList]=useState([])
    
     useEffect(()=>{
-        fetch(`http://localhost:4000/myList/${user?.email}`)
+        fetch(`https://tourist-server-site.vercel.app/myList/${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             // console.log(data)

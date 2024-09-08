@@ -31,7 +31,7 @@ const AddTouristSpots = () => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				// --------------------
-				fetch('http://localhost:4000/countries',{
+				fetch('https://tourist-server-site.vercel.app/countries',{
 					method:'POST',
 					headers:{
 						'content-type':'application/json'
